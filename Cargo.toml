@@ -1,0 +1,36 @@
+[package]
+name = "itsalive"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata.lambda.env]
+URL = "https://loige.com"
+TIMEOUT = "10"
+TABLE_NAME = "!RefHealthChecksTable"
+
+# Starting in Rust 1.62 you can use `cargo add` to add dependencies 
+# to your project.
+#
+# If you're using an older Rust version,
+# download cargo-edit(https://github.com/killercup/cargo-edit#installation) 
+# to install the `add` subcommand.
+#
+# Running `cargo add DEPENDENCY_NAME` will
+# add the latest version of a dependency to the list,
+# and it will keep the alphabetic ordering for you.
+
+[dependencies]
+aws-config = "1.1.9"
+aws-sdk-dynamodb = "1.20.0"
+aws_lambda_events = { version = "0.15.0", default-features = false, features = [
+    "eventbridge",
+] }
+chrono = "0.4.35"
+lambda_runtime = "0.11.0"
+reqwest = { version = "0.12.2", default-features = false, features = [
+    "rustls-tls",
+    "http2",
+] }
+serde = { version = "1.0.197", features = ["derive"] }
+serde_json = "1.0.115"
+tokio = { version = "1", features = ["macros"] }
